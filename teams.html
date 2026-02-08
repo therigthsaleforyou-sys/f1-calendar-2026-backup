@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equipas F1 2026</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* TEAMS GRID */
+    #teams-cards {
+      padding: 12px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .team-card {
+      background: #111;
+      border: 2px solid #ff0000;
+      border-radius: 16px;
+      padding: 14px;
+      text-align: center;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .team-card:hover {
+      border-color: gold;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.7);
+    }
+
+    /* LOGOS – FINAL */
+    .team-card img {
+      width: 270px;          /* +50% novamente */
+      max-width: 100%;
+      border-radius: 14px;
+      margin-bottom: 14px;
+
+      /* sem rebordos / fundos */
+      background: none;
+      padding: 0;
+      border: none;
+      box-shadow: none;
+    }
+
+    .team-card h3 {
+      margin: 10px 0 6px;
+    }
+
+    .team-card p {
+      margin: 4px 0;
+      font-size: 0.95rem;
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+<header class="main-header">
+  <nav class="nav">
+    <a href="index.html">Calendário</a>
+    <a href="teams.html"class="active">Equipas</a>
+    <a href="f1noticias.html">Notícias</a>
+    <a href="race/resultados.html">Resultados</a>
+  </nav>
+</header>
+
+  <!-- TEAMS -->
+  <main>
+    <section id="teams-cards"></section>
+  </main>
+
+  <!-- BACK TO TOP (igual homepage) -->
+  <button id="back-to-top">Voltar ao topo</button>
+
+  <!-- FOOTER -->
+  <footer style="text-align:center;padding:20px;opacity:.6">
+    Calendário F1 – Projeto Independente
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const teamsCards = document.getElementById("teams-cards");
+      const backToTop = document.getElementById("back-to-top");
+
+      const teams = [
+        { name: "McLaren", logo: "assets/teams/mclaren.png", drivers: ["Lando Norris", "Oscar Piastri"] },
+        { name: "Mercedes", logo: "assets/teams/mercedes.png", drivers: ["George Russell", "Kimi Antonelli"] },
+        { name: "Red Bull Racing", logo: "assets/teams/redbull.png", drivers: ["Max Verstappen", "Isack Hadjar"] },
+        { name: "Ferrari", logo: "assets/teams/ferrari.png", drivers: ["Charles Leclerc", "Lewis Hamilton"] },
+        { name: "Aston Martin", logo: "assets/teams/astonmartin.png", drivers: ["Fernando Alonso", "Lance Stroll"] },
+        { name: "Williams", logo: "assets/teams/williams.png", drivers: ["Alexander Albon", "Carlos Sainz Jr."] },
+        { name: "Audi F1 Team", logo: "assets/teams/audi.png", drivers: ["Nico Hülkenberg", "Gabriel Bortoleto"] },
+        { name: "Alpine", logo: "assets/teams/alpine.png", drivers: ["Pierre Gasly", "Franco Colapinto"] },
+        { name: "Haas", logo: "assets/teams/haas.png", drivers: ["Esteban Ocon", "Oliver Bearman"] },
+        { name: "Racing Bulls", logo: "assets/teams/racing-bulls.png", drivers: ["Liam Lawson", "Arvid Lindblad"] },
+        { name: "Cadillac F1 Team", logo: "assets/teams/cadillac.png", drivers: ["Sergio Pérez", "Valtteri Bottas"] }
+      ];
+
+      teams.forEach(team => {
+        const card = document.createElement("div");
+        card.className = "team-card";
+        card.innerHTML = `
+          <img src="${team.logo}" alt="${team.name}">
+          <h3>${team.name}</h3>
+          <p><strong>Pilotos:</strong></p>
+          ${team.drivers.map(d => `<p>${d}</p>`).join("")}
+        `;
+        teamsCards.appendChild(card);
+      });
+
+      /* Back to top – igual homepage */
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 400) backToTop.classList.add("show");
+        else backToTop.classList.remove("show");
+      });
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    });
+  </script>
+
+</body>
+</html>
